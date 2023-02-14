@@ -1,0 +1,6 @@
+// Comentário de uma linha
+
+/* Comentário multi linhas
+   Comentário multi linhas
+   Comentário multi linhas
+*/
