@@ -1,44 +1,32 @@
 import { pokemons, pokemonTypesInPortuguese } from "./data.js";
 
-const findPokemonByName = (pokemonName) => {
-  const pokemonObject = pokemons.find((pokemon) => {
-    if (pokemon.name == pokemonName) {
-      return pokemon;
-    }
-  });
-  return pokemonObject;
+const foundPokemon = (pokemonName) => {
+  return pokemons.find((pokemon) => pokemon.name == pokemonName);
 };
 
-const selectAllPokemonsFromType = (typeName) => {
-  const filteredPokemonsByType = pokemons.filter((pokemon) => {
-    if (pokemon.type.includes(typeName)) {
-      return pokemon;
-    }
-  });
-  return filteredPokemonsByType;
+const selectedPokemonsFromType = (typeName) => {
+  return pokemons.filter((pokemon) => pokemon.type.includes(typeName));
 };
 
-const translatePokemonTypes = (pokemons) => {
-  const pokemonsArrayInPortuguese = pokemons.map((pokemon) => {
-    for (let i = 0; i < pokemon.type.length; i++) {
-      if (pokemonTypesInPortuguese[pokemon.type[i]]) {
-        pokemon.type[i] = pokemonTypesInPortuguese[pokemon.type[i]];
-      }
-    }
+const pokemonsArrayWithTypesInPortuguese = (pokemonsArray) => {
+  return pokemonsArray.map((pokemon) => {
+    const newPokemonTypes = pokemon.type.map(
+      (pokemonType) => (pokemonType = pokemonTypesInPortuguese[pokemonType])
+    );
+    pokemon.type = newPokemonTypes;
     return pokemon;
   });
-  return pokemonsArrayInPortuguese;
 };
 
 console.log("Procurar por pokemon por nome: \n");
-console.log(findPokemonByName("krabby"));
+console.log(foundPokemon("krabby"));
 console.log(
   "\n ============================================================= \n"
 );
 console.log("Selecionar pokemon por tipo: \n");
-console.log(selectAllPokemonsFromType("grass"));
+console.log(selectedPokemonsFromType("grass"));
 console.log(
   "\n ============================================================= \n "
 );
 console.log("Traduzir todos os tipos de pokemon para portugues: \n");
-console.log(translatePokemonTypes(pokemons));
+console.log(pokemonsArrayWithTypesInPortuguese(pokemons));
