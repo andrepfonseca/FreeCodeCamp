@@ -1,25 +1,25 @@
 import { pokemons, pokemonTypesInPortuguese } from "./data.js";
 
-const foundPokemon = (pokemonName) => {
-  const pokemonObjetct = pokemons.find((pokemon) => {
+const findPokemonByName = (pokemonName) => {
+  const pokemonObject = pokemons.find((pokemon) => {
     if (pokemon.name == pokemonName) {
       return pokemon;
     }
   });
-  return pokemonObjetct;
+  return pokemonObject;
 };
 
-const selectPokemonFromType = (typeName) => {
-  const filteredPokemons = pokemons.filter((pokemon) => {
+const selectAllPokemonsFromType = (typeName) => {
+  const filteredPokemonsByType = pokemons.filter((pokemon) => {
     if (pokemon.type.includes(typeName)) {
       return pokemon;
     }
   });
-  return filteredPokemons;
+  return filteredPokemonsByType;
 };
 
 const translatePokemonTypes = (pokemons) => {
-  const translatedArray = pokemons.map((pokemon) => {
+  const pokemonsArrayInPortuguese = pokemons.map((pokemon) => {
     for (let i = 0; i < pokemon.type.length; i++) {
       if (pokemonTypesInPortuguese[pokemon.type[i]]) {
         pokemon.type[i] = pokemonTypesInPortuguese[pokemon.type[i]];
@@ -27,16 +27,16 @@ const translatePokemonTypes = (pokemons) => {
     }
     return pokemon;
   });
-  return translatedArray;
+  return pokemonsArrayInPortuguese;
 };
 
 console.log("Procurar por pokemon por nome: \n");
-console.log(foundPokemon("krabby"));
+console.log(findPokemonByName("krabby"));
 console.log(
   "\n ============================================================= \n"
 );
 console.log("Selecionar pokemon por tipo: \n");
-console.log(selectPokemonFromType("grass"));
+console.log(selectAllPokemonsFromType("grass"));
 console.log(
   "\n ============================================================= \n "
 );
