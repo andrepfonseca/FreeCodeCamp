@@ -13,34 +13,31 @@ const voters = [
   { name: "Zack", age: 19, voted: false },
 ];
 
-const votersCount = {
-  numYoungVotes: 0,
-  numYoungPeople: 0,
-  numMidVotesPeople: 0,
-  numMidsPeople: 0,
-  numOldVotesPeople: 0,
-  numOldsPeople: 0,
-};
-
-const votersResult = voters.reduce((acc, cur) => {
-  if (cur.age < 30) {
-    votersCount.numYoungPeople += 1;
-    cur.voted ? (votersCount.numYoungVotes += 1) : votersCount.numYoungVotes;
+const votersResult = voters.reduce(
+  (acc, cur) => {
+    if (cur.age < 30) {
+      acc.numYoungPeople += 1;
+      if (cur.voted) acc.numYoungVotes += 1;
+    }
+    if (cur.age >= 30 && cur.age < 40) {
+      acc.numMidsPeople += 1;
+      if (cur.voted) acc.numMidVotesPeople += 1;
+    }
+    if (cur.age >= 40) {
+      acc.numOldsPeople += 1;
+      if (cur.voted) acc.numOldVotesPeople += 1;
+    }
+    return acc;
+  },
+  {
+    numYoungVotes: 0,
+    numYoungPeople: 0,
+    numMidVotesPeople: 0,
+    numMidsPeople: 0,
+    numOldVotesPeople: 0,
+    numOldsPeople: 0,
   }
-  if (cur.age >= 30 && cur.age < 40) {
-    votersCount.numMidsPeople += 1;
-    cur.voted
-      ? (votersCount.numMidVotesPeople += 1)
-      : votersCount.numMidVotesPeople;
-  }
-  if (cur.age >= 40) {
-    votersCount.numOldsPeople += 1;
-    cur.voted
-      ? (votersCount.numOldVotesPeople += 1)
-      : votersCount.numOldVotesPeople;
-  }
-  return votersCount;
-}, votersCount);
+);
 
 console.log(votersResult); // Returned value shown below:
 /*
