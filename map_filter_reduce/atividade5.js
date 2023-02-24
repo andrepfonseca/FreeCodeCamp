@@ -18,12 +18,10 @@ const votersResult = voters.reduce(
     if (cur.age < 30) {
       acc.numYoungPeople += 1;
       if (cur.voted) acc.numYoungVotes += 1;
-    }
-    if (cur.age >= 30 && cur.age < 40) {
+    } else if (cur.age < 40) {
       acc.numMidsPeople += 1;
       if (cur.voted) acc.numMidVotesPeople += 1;
-    }
-    if (cur.age >= 40) {
+    } else {
       acc.numOldsPeople += 1;
       if (cur.voted) acc.numOldVotesPeople += 1;
     }
