@@ -22,13 +22,12 @@ const input = [
 ];
 
 const getMaxMinAndDifferenceBetweenMaxAndMinAges = (arrayOfPeople) => {
-  let maxAge;
-  let minAge;
-  arrayOfPeople.map((element) => {
-    if (element.age > maxAge || maxAge == undefined) maxAge = element.age;
-    if (element.age < minAge || minAge == undefined) minAge = element.age;
-  });
-  return [minAge, maxAge, maxAge - minAge];
+  const agesArray = arrayOfPeople.map((element) => element.age);
+  return [
+    Math.min(...agesArray),
+    Math.max(...agesArray),
+    Math.max(...agesArray) - Math.min(...agesArray),
+  ];
 };
 
 // teste
